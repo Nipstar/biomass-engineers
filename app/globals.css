@@ -1,26 +1,226 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --green: #1B3A2D;
+  --green-mid: #264D3B;
+  --amber: #C8921A;
+  --amber-light: #E5A820;
+  --cream: #F6F1E7;
+  --cream-dark: #EDE6D5;
+  --charcoal: #1A1A18;
+  --mid: #4A4A44;
+  --muted: #7A7A72;
+  --white: #FBF8F1;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-green: var(--green);
+  --color-green-mid: var(--green-mid);
+  --color-amber: var(--amber);
+  --color-amber-light: var(--amber-light);
+  --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+  --color-charcoal: var(--charcoal);
+  --color-mid: var(--mid);
+  --color-muted: var(--muted);
+  --color-background: var(--cream);
+  --color-foreground: var(--charcoal);
+  --font-sans: var(--font-outfit);
+  --font-display: var(--font-outfit);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--cream);
+  color: var(--charcoal);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+
+.font-mono, .eyebrow-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0.05em;
+}
+
+a { color: inherit; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.5rem;
+  border: 2px solid transparent;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, color 120ms ease;
+  cursor: pointer;
+}
+.btn-amber {
+  background: var(--amber);
+  color: var(--charcoal);
+  border-color: var(--charcoal);
+  box-shadow: 4px 4px 0 0 var(--charcoal);
+}
+.btn-amber:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--charcoal);
+}
+.btn-green {
+  background: transparent;
+  color: var(--charcoal);
+  border-color: var(--charcoal);
+  box-shadow: 4px 4px 0 0 var(--charcoal);
+}
+.btn-green:hover {
+  background: var(--green);
+  color: var(--white);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--charcoal);
+}
+.btn-green-solid {
+  background: var(--green);
+  color: var(--white);
+  border-color: var(--charcoal);
+  box-shadow: 4px 4px 0 0 var(--charcoal);
+}
+.btn-green-solid:hover {
+  background: var(--green-mid);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--charcoal);
+}
+.btn-white {
+  background: var(--white);
+  color: var(--charcoal);
+  border-color: var(--charcoal);
+  box-shadow: 4px 4px 0 0 var(--charcoal);
+}
+.btn-white:hover {
+  background: var(--cream);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--charcoal);
+}
+.btn-white-outline {
+  background: transparent;
+  color: var(--white);
+  border-color: var(--white);
+}
+.btn-white-outline:hover {
+  background: var(--white);
+  color: var(--charcoal);
+}
+
+/* Offset shadows */
+.offset-amber { box-shadow: 6px 6px 0 0 var(--amber); }
+.offset-amber-sm { box-shadow: 4px 4px 0 0 var(--amber); }
+.offset-green { box-shadow: 6px 6px 0 0 var(--green); }
+.offset-charcoal { box-shadow: 6px 6px 0 0 var(--charcoal); }
+
+/* Pills */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem;
+  border: 2px solid var(--charcoal);
+  color: var(--charcoal);
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: transparent;
+}
+.pill-amber { border-color: var(--amber); color: var(--amber); background: rgba(200, 146, 26, 0.08); }
+.pill-solid-amber { background: var(--amber); border-color: var(--charcoal); color: var(--charcoal); }
+.pill-green { background: var(--green); border-color: var(--green); color: var(--white); }
+
+/* Layout */
+.section { padding: 5rem 1.25rem; }
+@media (min-width: 768px) { .section { padding: 6.5rem 2rem; } }
+.container-bx { width: 100%; max-width: 1240px; margin-inline: auto; }
+
+/* Diagonal background */
+.hero-diagonal {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(200, 146, 26, 0.06) 0,
+    rgba(200, 146, 26, 0.06) 1px,
+    transparent 1px,
+    transparent 36px
+  );
+}
+
+/* Forms */
+input, textarea, select {
+  border: 2px solid var(--charcoal);
+  background: var(--white);
+  padding: 0.75rem 0.9rem;
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--charcoal);
+  border-radius: 0;
+  appearance: none;
+}
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-color: var(--amber);
+}
+label {
+  display: block;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 0.35rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+/* Section head pattern */
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+.section-head-index {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--amber);
+  padding-top: 0.2rem;
+  letter-spacing: 0.08em;
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 28s linear infinite; display: flex; }
+.marquee-track:hover { animation-play-state: paused; }
+
+/* Scrollbar */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb { background: var(--green); }
+*::-webkit-scrollbar-track { background: var(--cream-dark); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
 }
