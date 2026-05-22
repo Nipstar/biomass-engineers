@@ -3,8 +3,9 @@ export const site = {
   tagline: "Specialist Biomass Boiler Installation, Servicing & Repairs",
   phoneEnquiries: "07855 586555",
   phoneTechnical: "07855 586555",
-  phoneEnquiriesHref: "tel:07855586555",
-  phoneTechnicalHref: "tel:07855586555",
+  phoneE164: "+447855586555",
+  phoneEnquiriesHref: "tel:+447855586555",
+  phoneTechnicalHref: "tel:+447855586555",
   email: "admin@biomass-engineers.co.uk",
   emailHref: "mailto:admin@biomass-engineers.co.uk",
   address: {
@@ -15,7 +16,8 @@ export const site = {
     postalCode: "EX8 4EE",
   },
   url: "https://biomass-engineers.co.uk",
-  coverage: "UK-wide · South West specialist · Based in Exmouth, Devon",
+  coverage: "Bristol – Bournemouth – Penzance triangle · Based in Exmouth, Devon",
+  hetasUrl: "https://www.hetas.co.uk/business/biomass-engineers-ltd/",
 } as const;
 
 export const nav = [

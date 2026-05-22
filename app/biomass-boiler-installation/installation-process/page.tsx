@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Biomass Boiler Installation Process — Step by Step",
   description:
     "Every stage of a biomass boiler installation explained — from first enquiry through survey, design, install, commissioning and first service.",
+  alternates: { canonical: "/biomass-boiler-installation/installation-process" },
 };
 
 const steps = [

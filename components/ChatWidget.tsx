@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { site } from "@/lib/site";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
@@ -58,7 +59,7 @@ export function ChatWidget() {
         ...m,
         {
           role: "assistant",
-          content: "Sorry, chat is briefly unavailable. Please call 0333 XXX XXXX or use the contact form.",
+          content: `Sorry, chat is briefly unavailable. Please call ${site.phoneEnquiries} or use the contact form.`,
         },
       ]);
     } finally {

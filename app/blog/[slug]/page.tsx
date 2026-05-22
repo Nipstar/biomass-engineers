@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Hero } from "@/components/Hero";
 import { CTAStrip } from "@/components/CTAStrip";
 import { JsonLd } from "@/components/JsonLd";
-import { getAllSlugs, getPost } from "@/lib/blog";
+import { getAllSlugs, getPost, blogImageForPost } from "@/lib/blog";
 import { compile, run } from "@mdx-js/mdx";
 import * as runtime from "react/jsx-runtime";
 import Link from "next/link";
@@ -22,6 +22,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: post.title,
       description: post.description,
+      alternates: { canonical: `/blog/${slug}` },
+      openGraph: {
+        title: post.title,
+        description: post.description,
+        type: "article",
+        publishedTime: post.date,
+        images: [{ url: blogImageForPost(slug), width: 1600, height: 1200, alt: post.title }],
+      },
     };
   } catch {
     return {};
@@ -44,9 +52,22 @@ export default async function BlogPost({ params }: Props) {
     headline: post.title,
     description: post.description,
     datePublished: post.date,
+    dateModified: post.date,
+    image: `${site.url}${blogImageForPost(post.slug)}`,
     author: { "@type": "Organization", name: site.name, url: site.url },
-    publisher: { "@type": "Organization", name: site.name, url: site.url },
+    publisher: { "@type": "Organization", name: site.name, url: site.url, logo: { "@type": "ImageObject", url: `${site.url}/hetas-logo.svg` } },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${site.url}/blog/${post.slug}` },
+    articleSection: post.category,
     url: `${site.url}/blog/${post.slug}`,
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${site.url}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: `${site.url}/blog/${post.slug}` },
+    ],
   };
 
   const compiled = await compile(post.content, { outputFormat: "function-body" });
@@ -58,6 +79,7 @@ export default async function BlogPost({ params }: Props) {
   return (
     <>
       <JsonLd data={blogSchema} />
+      <JsonLd data={breadcrumbSchema} />
       <Hero
         eyebrow={post.category}
         title={post.title}

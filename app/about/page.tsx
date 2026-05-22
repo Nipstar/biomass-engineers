@@ -5,9 +5,10 @@ import { CTAStrip } from "@/components/CTAStrip";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
 export const metadata: Metadata = {
-  title: "About Biomass Engineers Limited",
+  title: "About Us",
   description:
-    "Based in Exmouth, Devon — biomass specialists with over 15 years in the field. HETAS registered, RHI compliant, UK-wide coverage with a South West focus.",
+    "Based in Exmouth, Devon — biomass specialists with over 15 years in the field. HETAS registered, RHI compliant, covering the South West across the Bristol – Bournemouth – Penzance triangle.",
+  alternates: { canonical: "/about" },
 };
 
 const values = [
@@ -23,7 +24,7 @@ export default function Page() {
       <Hero
         eyebrow="About Us"
         title="Biomass engineers with roots in rural Britain"
-        subtitle="Biomass Engineers Limited is based in Exmouth, Devon. We service, repair and install biomass boilers across the South West and the whole of the UK."
+        subtitle="Biomass Engineers Limited is based in Exmouth, Devon. We service, repair and install biomass boilers across the South West — the Bristol – Bournemouth – Penzance triangle."
       />
 
       <section className="bg-[var(--cream)]">
@@ -37,7 +38,7 @@ export default function Page() {
               We are HETAS registered, fully insured and proudly independent. We work on every major manufacturer — Fröling, Hargassner, Herz, Heizomat, Binder, Windhager and others — and we don&apos;t represent any single one of them. Our specification and advice is honest, and our service book speaks for itself: a mix of domestic, agricultural, commercial, public sector and hospitality clients up and down the country.
             </p>
             <p className="text-[var(--mid)] mb-6">
-              We&apos;re based in Exmouth on the Devon coast. It is a good vantage point — Dartmoor, Exmoor, Cornwall, Somerset, Dorset and up into Bristol, Bath, Wiltshire and Hampshire are all a day&apos;s travel. For UK-wide work we plan routes around clients so travel never becomes the cost.
+              We&apos;re based in Exmouth on the Devon coast. It is a central vantage point in the South West — our service area is the Bristol – Bournemouth – Penzance triangle, covering Devon, Cornwall, Somerset, Dorset, Wiltshire, Bristol and the western edge of Hampshire. Every site in the triangle is within a single day&apos;s travel.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/about/our-team" className="btn btn-green">Meet the team</Link>
@@ -45,7 +46,7 @@ export default function Page() {
             </div>
           </div>
           <div className="space-y-4">
-            <ImagePlaceholder src="/images/engineer-at-work.jpg" label="Team photograph" aspect="4/5" tone="green" />
+            <ImagePlaceholder src="/images/canva/portrait/reconditioned-rebuild-heat-exchanger.webp" label="Engineer on site with rebuilt heat exchanger" aspect="4/5" tone="green" />
             <div className="bg-[var(--green)] text-[var(--cream)] p-6 border-2 border-[var(--amber)]">
               <div className="font-display text-2xl mb-2">500+</div>
               <div className="text-xs uppercase tracking-widest text-[var(--amber)]">Systems Serviced</div>

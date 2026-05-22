@@ -5,6 +5,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Privacy policy for Biomass Engineers Limited — how we collect, use and protect your personal data.",
+  alternates: { canonical: "/privacy-policy" },
 };
 
 export default function Page() {

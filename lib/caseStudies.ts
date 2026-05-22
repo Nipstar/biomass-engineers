@@ -1,10 +1,10 @@
 export type CaseStudy = {
   slug: string;
   title: string;
-  sector: "Commercial" | "Agricultural" | "Hospitality" | "Education" | "Public Sector" | "Domestic";
+  sector: "Commercial" | "Agricultural" | "Hospitality" | "Education" | "Public Sector" | "Domestic" | "Industrial";
   boilerBrand: string;
   output: string;
-  fuelType: "Wood Pellet" | "Wood Chip" | "Log";
+  fuelType: "Wood Pellet" | "Wood Chip" | "Log" | "Waste Wood" | "Biogas" | "Food Waste";
   year: number;
   location: string;
   summary: string;
@@ -23,8 +23,8 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "commercial-hotel-biomass-installation",
-    title: "Commercial Hotel — 500 kW Fröling Wood Chip",
+    slug: "country-hotel-froling-district-heating",
+    title: "Country Hotel — 500 kW Fröling Wood Chip with District Loop",
     sector: "Hospitality",
     boilerBrand: "Fröling",
     output: "500 kW",
@@ -32,13 +32,13 @@ export const caseStudies: CaseStudy[] = [
     year: 2023,
     location: "Mid Devon",
     summary:
-      "A rural country hotel replacing an ageing oil system with a 500 kW Fröling wood chip boiler, district heating to main building and three holiday cottages.",
+      "Rural country hotel replacing oil with a 500 kW Fröling wood chip boiler, multi-boiler plant room with gas back-up, and district heating to the main building and three holiday cottages.",
     challenge:
-      "The hotel had been running three oil boilers across the main building and three holiday cottages, with rapidly rising fuel costs and ongoing reliability issues during peak season. The site needed a single scalable heat source, minimal disruption to guests during the switch, and full RHI compliance to protect ongoing payments.",
+      "The hotel ran three oil boilers across the main building and three holiday cottages, with rapidly rising fuel costs and reliability issues during peak season. The site needed a single scalable heat source, minimal guest disruption during switchover, and full RHI compliance to protect ongoing payments.",
     solution:
-      "We specified a 500 kW Fröling wood chip boiler with a purpose-built chip store in a converted barn, pre-insulated pipework running under existing tracks to the cottages, and hydraulic separation protecting the existing emitters. Heat meters were fitted at each dwelling for compliant non-domestic RHI reporting.",
+      "We specified a 500 kW Fröling wood chip boiler with a purpose-built chip store in a converted barn, pre-insulated district pipework running under existing tracks to the cottages, and a gas back-up boiler held in reserve for peak demand and resilience. Hydraulic separation protects the existing emitters and heat meters were fitted at each dwelling for compliant non-domestic RHI reporting.",
     installation:
-      "Installation ran over five weeks with the existing oil system left in place until commissioning was complete. The chip store was built alongside existing barn works; pipework was trenched between events to avoid disruption. The boiler was commissioned at peak load and handed over with full MCS and RHI documentation.",
+      "Installation ran over five weeks with the existing oil system left in place until commissioning was complete. The chip store was built alongside existing barn works and pipework was trenched between events to avoid disruption. The boiler was commissioned at peak load and handed over with full MCS and RHI documentation.",
     outcome: {
       annualFuelSaving: "£28,000",
       rhiAnnualIncome: "£22,000",
@@ -51,11 +51,11 @@ export const caseStudies: CaseStudy[] = [
       name: "General Manager",
       role: "Country Hotel, Mid Devon",
     },
-    image: "/images/hero-plant-room.png",
+    image: "/images/canva/landscape/350kw-district-heating-system-with-gas-back-up-boiler.webp",
   },
   {
-    slug: "agricultural-estate-pellet-boiler",
-    title: "Agricultural Estate — 200 kW Hargassner Pellet",
+    slug: "agricultural-estate-pellet-bulk-store",
+    title: "Agricultural Estate — 200 kW Hargassner Pellet with Bulk Fuel Store",
     sector: "Agricultural",
     boilerBrand: "Hargassner",
     output: "200 kW",
@@ -63,11 +63,11 @@ export const caseStudies: CaseStudy[] = [
     year: 2022,
     location: "Dartmoor, Devon",
     summary:
-      "A working Dartmoor estate switching farmhouse, workers' cottages and grain drying onto a 200 kW Hargassner pellet boiler with on-site pellet store.",
+      "Working Dartmoor estate switching farmhouse, workers' cottages and grain drying onto a 200 kW Hargassner pellet boiler with bulk on-site pellet store and external flue.",
     challenge:
-      "The estate's existing setup — mixed oil and LPG across three buildings plus dedicated grain drying diesel — was expensive, complex and inefficient. The owners wanted one heat source, reliable grain drying and RHI income where available.",
+      "The estate's mixed oil and LPG setup across three buildings plus dedicated diesel grain drying was expensive, complex and inefficient. The owners wanted a single heat source, reliable grain drying capacity, and RHI income where available.",
     solution:
-      "200 kW Hargassner ECO-PK pellet boiler sited in a purpose-built plant room, with a 25-tonne bulk pellet store served by blown delivery from Land Energy. Pre-insulated district runs to the farmhouse and two cottages plus a heat exchanger feeding the grain drying rig during harvest.",
+      "200 kW Hargassner ECO-PK pellet boiler sited in a purpose-built plant room, with a 25-tonne bulk pellet store served by blown delivery from Land Energy. Pre-insulated district runs to the farmhouse and two cottages plus a heat exchanger feeding the grain drying rig during harvest. External insulated flue routed clear of the eaves.",
     installation:
       "Installed over three weeks with the pellet store and plant room built in parallel by the estate's own builders under our direction. Commissioning included full-load testing into the grain drying circuit during an August harvest.",
     outcome: {
@@ -82,131 +82,131 @@ export const caseStudies: CaseStudy[] = [
       name: "Estate Manager",
       role: "Dartmoor Agricultural Estate",
     },
-    image: "/images/fuel-delivery.png",
+    image: "/images/canva/landscape/fuel-delivery-and-storage.webp",
   },
   {
-    slug: "school-biomass-heating-system",
-    title: "Secondary School — 150 kW Herz Wood Chip",
-    sector: "Education",
-    boilerBrand: "Herz",
-    output: "150 kW",
-    fuelType: "Wood Chip",
-    year: 2021,
+    slug: "anaerobic-digestion-heat-recovery",
+    title: "Anaerobic Digestion — Heat Matrix Recovery on AD Dome",
+    sector: "Agricultural",
+    boilerBrand: "Bespoke",
+    output: "350 kW recovered",
+    fuelType: "Biogas",
+    year: 2023,
     location: "Somerset",
     summary:
-      "A rural secondary school replacing an ageing gas boiler installation with a 150 kW Herz wood chip boiler — council-funded, full commissioning documentation.",
+      "Custom heat-matrix retrofit on an on-farm anaerobic digestion plant — capturing waste heat from the CHP engine and biogas circuit to feed the digester pre-warming loop and adjacent dryer floor.",
     challenge:
-      "The school's 1970s gas plant was end-of-life, expensive to run and failing too often. Local authority wanted a low-carbon replacement aligning with its own decarbonisation targets, with a careful project plan working around term times.",
+      "An on-farm AD plant was venting significant residual heat from the CHP engine jacket and biogas-cleaning circuit. The operator wanted that heat captured and routed back into the process — improving digestion stability through the winter months and providing low-grade heat to a neighbouring crop-drying floor.",
     solution:
-      "150 kW Herz firematic chip boiler, external chip store, new plant room works within the existing boiler house footprint, integrated with the BMS for central monitoring.",
+      "We designed and fabricated a custom heat-matrix coil to fit the AD dome side wall, plumbed to the existing CHP engine jacket via a hydraulic separator. Two control loops keep digester temperature stable at 38 °C while sending excess heat to a downstream plate exchanger feeding the crop-drying circuit.",
     installation:
-      "Installation delivered in two stages over the summer and Christmas breaks to avoid disruption. Full commissioning documentation, HETAS compliance pack, and training for site staff and FM contractor completed before handover.",
+      "Coded welding throughout, with on-site fabrication completed in five days. Commissioning included staged ramp-up of the digester loop and instrumentation calibration on the dryer outlet.",
     outcome: {
-      annualFuelSaving: "£11,000",
-      rhiAnnualIncome: "£9,200",
-      carbonReduction: "85% vs gas",
+      annualFuelSaving: "£21,000",
+      rhiAnnualIncome: "n/a",
+      carbonReduction: "Improved CHP recovery 18%",
       systemUptime: "99.8%",
     },
     testimonial: {
       quote:
-        "Delivered on time around our term calendar, with none of the usual contractor drama. The system has been dependable since day one.",
-      name: "Business Manager",
-      role: "Secondary School, Somerset",
+        "Heat we used to vent now keeps the dryer running through harvest. Payback inside eighteen months.",
+      name: "Site Engineer",
+      role: "Somerset AD Operator",
     },
-    image: "/images/herz-boiler.png",
+    image: "/images/canva/landscape/heat-matrix-anearobic-boiler.webp",
   },
   {
-    slug: "leisure-centre-district-heating",
-    title: "Leisure Centre — 800 kW Heizomat District Heating",
-    sector: "Public Sector",
-    boilerBrand: "Heizomat",
-    output: "800 kW",
-    fuelType: "Wood Chip",
-    year: 2020,
+    slug: "sawmill-waste-wood-boiler",
+    title: "Sawmill — 1 MW Waste-Wood Boiler & Chip Preparation Line",
+    sector: "Industrial",
+    boilerBrand: "Binder",
+    output: "1,000 kW",
+    fuelType: "Waste Wood",
+    year: 2022,
     location: "South West",
     summary:
-      "A local authority leisure centre served by an 800 kW Heizomat wood chip boiler with district heating loop to pool, gym and café. Planned preventative maintenance contract.",
+      "On-site waste-wood boiler with cyclone chimney and dedicated chip-prep line — shredder with overband magnets — converting yard offcuts into low-cost process heat for a working sawmill.",
     challenge:
-      "The pool's gas-fired plant was the largest single source of carbon on the authority's estate. A committed net-zero target and public spending scrutiny drove the project — but the scheme had to cope with 24/7 pool load, peak demand and strict reliability KPIs.",
+      "A regional sawmill was paying twice over — disposing of offcut waste at gate fee and buying-in LPG for timber kilns. The yard already had clean dimensioned offcut in quantity but no way to combust it safely or capture the heat.",
     solution:
-      "800 kW Heizomat wood chip boiler in a new plant room, underground chip store with walking-floor delivery, district heating loop to pool, gym and café. Full BMS integration with the authority's central monitoring.",
+      "1 MW Binder travelling-grate boiler with cyclone-style stainless chimney, in-yard waste-wood shredder with overband magnetic separation, and conveyor feed to a covered chip store. Heat routed to two timber drying kilns and a workshop space heater. Multi-cyclone dust collection on the flue gas line.",
     installation:
-      "Installation delivered over 16 weeks alongside pool maintenance scheduling. Coded welding in-house for all primary circuits. Commissioning ramped over two weeks to stabilise the pool controls.",
+      "12-week install with concrete pad, plant room steelwork and chimney lift completed in parallel with yard works. Commissioning included six staged burns to tune the grate and overfire-air ratio for the variable feedstock.",
     outcome: {
-      annualFuelSaving: "£62,000",
-      rhiAnnualIncome: "£48,000",
-      carbonReduction: "88% vs gas",
-      systemUptime: "99.6%",
+      annualFuelSaving: "£86,000",
+      rhiAnnualIncome: "£0 (RHI ineligible — waste wood)",
+      carbonReduction: "Diverts 600 t/year offcut from landfill",
+      systemUptime: "98.4%",
     },
     testimonial: {
       quote:
-        "A high-stakes, high-visibility project delivered with total professionalism. Two winters in, the numbers have beaten projections.",
-      name: "Facilities Director",
-      role: "South West Leisure Centre",
+        "We turned a disposal cost into a heat source. The boiler ran through its first winter with no unplanned downtime.",
+      name: "Mill Owner",
+      role: "South West Sawmill",
     },
-    image: "/images/commercial-installation.png",
+    image: "/images/canva/landscape/waste-wood-boiler.webp",
   },
   {
-    slug: "nursing-home-biomass-retrofit",
-    title: "Nursing Home — 100 kW Windhager Pellet Retrofit",
-    sector: "Commercial",
-    boilerBrand: "Windhager",
-    output: "100 kW",
-    fuelType: "Wood Pellet",
+    slug: "food-waste-to-energy-installation",
+    title: "Food-Waste-to-Energy Unit — On-Site Service & Heat Recovery",
+    sector: "Hospitality",
+    boilerBrand: "Bespoke",
+    output: "150 kW thermal",
+    fuelType: "Food Waste",
     year: 2023,
     location: "Devon",
     summary:
-      "A 60-bed nursing home retrofitting a 100 kW Windhager pellet boiler into its existing plant room, minimal disruption to residents during install.",
+      "Service and ongoing maintenance contract for an on-site food-waste-to-energy unit at a destination hotel — converting kitchen waste into combustible feedstock and recovering heat back to the kitchen DHW circuit.",
     challenge:
-      "A continuously occupied care home with 60 residents couldn't tolerate a lengthy heating outage. The existing oil boiler was beyond economic repair, and the care group wanted to cut carbon ahead of compliance tightening.",
+      "The hotel had installed a food-waste-to-energy unit but the original commissioning engineer had ceased trading. Combustion was unstable, the heat-recovery loop tripping on high temperature, and the kitchen team had lost confidence in the system.",
     solution:
-      "100 kW Windhager BioWIN XL pellet boiler retrofitted into the existing plant room, with a prefabricated bulk pellet silo delivered and craned into position on a single weekend. Oil system kept live until pellet commissioning complete.",
+      "We took the unit on under our existing-boiler programme: full strip-down service, refractory inspection, lambda probe recalibration, and re-tuning of the auger feed rate to suit the actual waste profile. Heat-recovery loop re-balanced with new differential controls.",
     installation:
-      "Install delivered over 10 days with the oil system running in parallel. Handover to the home's maintenance manager included full training. RHI registered on commissioning, first compliance service built into year-one plan.",
+      "Three site visits across four weeks. Now on annual PPM with quarterly check-in calls, parts sourced through our distributor network for what is an orphaned unit.",
     outcome: {
-      annualFuelSaving: "£7,400",
-      rhiAnnualIncome: "£5,800",
-      carbonReduction: "90% vs oil",
-      systemUptime: "100%",
+      annualFuelSaving: "£9,200",
+      rhiAnnualIncome: "n/a",
+      carbonReduction: "Diverts 18 t/year kitchen waste",
+      systemUptime: "99.1%",
     },
     testimonial: {
       quote:
-        "We had residents in the building throughout and not a single complaint. The boiler has run without interruption since the day it was commissioned.",
-      name: "Home Manager",
-      role: "Nursing Home, Devon",
+        "The team picked up an orphaned unit and made it work. Quarterly call-ins keep us ahead of any issues.",
+      name: "Head Chef",
+      role: "Destination Hotel, Devon",
     },
-    image: "/images/maintenance-engineer.png",
+    image: "/images/canva/landscape/food-waste-to-energy-unit.webp",
   },
   {
-    slug: "rural-property-log-boiler",
-    title: "Rural Property — 30 kW Fröling Log Boiler",
-    sector: "Domestic",
-    boilerBrand: "Fröling",
-    output: "30 kW",
-    fuelType: "Log",
+    slug: "ariterm-bioenergy-commercial-service",
+    title: "Commercial Ariterm Bioenergy Boiler — Service & RHI Compliance",
+    sector: "Commercial",
+    boilerBrand: "Ariterm",
+    output: "300 kW",
+    fuelType: "Wood Chip",
     year: 2023,
-    location: "Exmoor, Devon",
+    location: "South West",
     summary:
-      "A working Exmoor farmhouse off the gas grid, replacing oil with a 30 kW Fröling log boiler and thermal store. Fuel store design, flue install, commissioning and Land Energy fuel supply arranged.",
+      "Ongoing annual service and RHI-compliance documentation for a commercial Ariterm Bioenergy chip boiler installed by another contractor — taken on as an existing-boiler client.",
     challenge:
-      "The farmhouse had run on oil for 30 years but with managed woodland on the property, the owners wanted to move to a log boiler and use their own fuel. Off-grid, remote and no existing thermal store.",
+      "The site's original installer had stepped back from servicing Ariterm boilers in the UK, leaving the operator without compliant cover for the RHI accreditation period. Spare parts and proprietary fault codes were both issues.",
     solution:
-      "30 kW Fröling S4 Turbo log boiler, 3,000-litre thermal store in an adjacent barn, twin-wall flue routed through the gable. Fuel handling and load planning designed around the owners' own woodland routine.",
+      "We took the unit onto our existing-boiler programme, cleaned and inspected the full combustion chamber and heat exchanger circuit, recalibrated the lambda sensor and combustion fan, and issued RHI-compliant service documentation. Spare-parts pathway established for the Ariterm range.",
     installation:
-      "Installation across four days. Commissioning included two weeks of load-testing and user training with the owners on firing cycles and burn-down management.",
+      "Two-day initial service across a planned shutdown. Now on annual PPM with documented RHI compliance pack delivered each year.",
     outcome: {
-      annualFuelSaving: "£2,800",
-      rhiAnnualIncome: "£3,400",
-      carbonReduction: "95% vs oil",
-      systemUptime: "100%",
+      annualFuelSaving: "n/a",
+      rhiAnnualIncome: "£17,000 (protected)",
+      carbonReduction: "85% vs oil baseline",
+      systemUptime: "99.5%",
     },
     testimonial: {
       quote:
-        "It's transformed the house and the log pile is its own kind of satisfaction. The team taught us exactly how to run it properly.",
-      name: "Property Owner",
-      role: "Exmoor Farmhouse",
+        "We needed RHI cover from someone who understood Ariterm. The Biomass Engineers team had it sorted from the first visit.",
+      name: "Operations Director",
+      role: "Commercial Site, South West",
     },
-    image: "/images/froling-boiler.png",
+    image: "/images/canva/landscape/ariterm-boiler-service.webp",
   },
 ];
 

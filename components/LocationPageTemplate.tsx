@@ -3,9 +3,11 @@ import { Hero } from "@/components/Hero";
 import { CallbackForm } from "@/components/CallbackForm";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { CTAStrip } from "@/components/CTAStrip";
+import { JsonLd } from "@/components/JsonLd";
 import type { Location } from "@/lib/locations";
 import { locations } from "@/lib/locations";
 import { servicePages } from "@/lib/services";
+import { site } from "@/lib/site";
 
 const kindTitles = {
   servicing: "Biomass Boiler Servicing",
@@ -19,8 +21,35 @@ export function LocationPageTemplate({ loc }: { loc: Location }) {
     .filter((l) => l.region === loc.region && l.slug !== loc.slug)
     .slice(0, 4);
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `${kindTitles[loc.kind]} in ${loc.city}`,
+    provider: { "@type": "LocalBusiness", name: site.name, url: site.url, telephone: site.phoneE164 },
+    description: loc.intro,
+    areaServed: { "@type": "City", name: loc.city, containedInPlace: { "@type": "AdministrativeArea", name: loc.region } },
+    serviceType: kindTitles[loc.kind],
+    url: `${site.url}/${loc.slug}`,
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+      { "@type": "ListItem", position: 2, name: loc.city, item: `${site.url}/${loc.slug}` },
+    ],
+  };
+  const faqSchema = loc.faqs && loc.faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: loc.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  } : null;
+
   return (
     <>
+      <JsonLd data={serviceSchema} />
+      <JsonLd data={breadcrumbSchema} />
+      {faqSchema && <JsonLd data={faqSchema} />}
       <Hero
         eyebrow={`${loc.region} · ${kindTitles[loc.kind]}`}
         title={`${kindTitles[loc.kind]} in ${loc.city}`}

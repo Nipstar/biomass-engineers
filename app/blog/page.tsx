@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Biomass Boiler Blog & Guides",
   description:
     "Practical guides on biomass boiler servicing, installation, fuel, RHI compliance and commercial heating systems from Biomass Engineers Limited.",
+  alternates: { canonical: "/blog" },
 };
 
 const categoryColour: Record<string, string> = {

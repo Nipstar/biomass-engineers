@@ -3,14 +3,27 @@ import { Hero } from "@/components/Hero";
 import { CallbackForm } from "@/components/CallbackForm";
 import { CTAStrip } from "@/components/CTAStrip";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { JsonLd } from "@/components/JsonLd";
 import type { Brand } from "@/lib/brands";
 import { brands } from "@/lib/brands";
+import { site } from "@/lib/site";
 
 export function BrandPageTemplate({ brand }: { brand: Brand }) {
   const related = brands.filter((b) => b.slug !== brand.slug).slice(0, 5);
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+      { "@type": "ListItem", position: 2, name: "Biomass Boilers", item: `${site.url}/biomass-boilers` },
+      { "@type": "ListItem", position: 3, name: brand.name, item: `${site.url}/biomass-boilers/${brand.slug}` },
+    ],
+  };
+
   return (
     <>
+      <JsonLd data={breadcrumbSchema} />
       <Hero
         eyebrow={`${brand.country} · ${brand.technology}`}
         title={`${brand.name} Biomass Boiler Servicing, Installation & Repair`}

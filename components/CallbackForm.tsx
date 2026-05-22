@@ -4,16 +4,18 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { serviceFormOptions, type ServiceFormOption } from "@/lib/site";
+import { serviceFormOptions, site, type ServiceFormOption } from "@/lib/site";
 
 const schema = z.object({
   name: z.string().min(2, "Please enter your name"),
+  businessName: z.string().max(120).optional().or(z.literal("")),
   email: z.string().email("Please enter a valid email"),
   phone: z.string().min(7, "Please enter a valid phone"),
   service: z.enum(serviceFormOptions as unknown as [string, ...string[]]),
   message: z.string().max(2000).optional().or(z.literal("")),
   postcode: z.string().optional().or(z.literal("")),
-  company: z.string().max(0).optional().or(z.literal("")),
+  // honeypot — bots fill, humans don't
+  website_url: z.string().max(0).optional().or(z.literal("")),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -59,7 +61,7 @@ export function CallbackForm({
       reset();
     } catch {
       setServerError(
-        "Something went wrong. Please call us on 0333 XXX XXXX or try again."
+        `Something went wrong. Please call us on ${site.phoneEnquiries} or try again.`
       );
     }
   };
@@ -75,7 +77,11 @@ export function CallbackForm({
         <h3 className="font-display text-2xl mb-3">Thank you.</h3>
         <p className="text-[var(--mid)]">
           We&apos;ve received your request and a member of the team will be in touch shortly. For
-          urgent breakdowns please call 0333 XXX XXXX.
+          urgent breakdowns please call{" "}
+          <a href={site.phoneEnquiriesHref} className="font-semibold text-[var(--green)] hover:text-[var(--amber)]">
+            {site.phoneEnquiries}
+          </a>
+          .
         </p>
       </div>
     );
@@ -95,6 +101,10 @@ export function CallbackForm({
           <label htmlFor="name">Name</label>
           <input id="name" autoComplete="name" {...register("name")} />
           {errors.name && <p className="text-xs text-red-700 mt-1">{errors.name.message}</p>}
+        </div>
+        <div>
+          <label htmlFor="businessName">Business name <span className="text-[var(--muted)] text-xs">(optional)</span></label>
+          <input id="businessName" autoComplete="organization" {...register("businessName")} />
         </div>
         <div>
           <label htmlFor="email">Email</label>
@@ -135,7 +145,7 @@ export function CallbackForm({
         autoComplete="off"
         className="hidden"
         aria-hidden="true"
-        {...register("company")}
+        {...register("website_url")}
       />
 
       {serverError && <p className="text-sm text-red-700 mt-3">{serverError}</p>}
@@ -147,9 +157,6 @@ export function CallbackForm({
       >
         {isSubmitting ? "Sending…" : "Request Callback"}
       </button>
-      <p className="text-xs text-[var(--muted)] mt-3">
-        We respond during working hours. For urgent breakdowns call 0333 XXX XXXX.
-      </p>
     </form>
   );
 }

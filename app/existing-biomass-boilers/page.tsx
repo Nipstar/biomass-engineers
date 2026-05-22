@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Existing Biomass Boiler Support & Takeovers",
   description:
     "Take-on servicing, fault diagnosis and ongoing support for existing biomass boilers — regardless of who installed them or when.",
+  alternates: { canonical: "/existing-biomass-boilers" },
 };
 
 const scenarios = [
@@ -56,7 +57,7 @@ export default function Page() {
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div>
               <p className="text-lg text-[var(--mid)] mb-8 leading-relaxed">
-                Most of our work is on boilers we did not install. We take on systems across the South West and UK-wide — auditing them, getting them compliant, and providing ongoing service support regardless of make, age or history.
+                Most of our work is on boilers we did not install. We take on systems across the South West — the Bristol – Bournemouth – Penzance triangle — auditing them, getting them compliant, and providing ongoing service support regardless of make, age or history.
               </p>
               <h2 className="font-display text-2xl mb-6">Common scenarios we handle</h2>
               <div className="space-y-4">

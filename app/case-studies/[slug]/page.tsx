@@ -7,19 +7,20 @@ export function generateStaticParams() {
   return caseStudies.map((c) => ({ slug: c.slug }));
 }
 
-export async function generateMetadata(
-  props: PageProps<"/case-studies/[slug]">
-): Promise<Metadata> {
+type Props = { params: Promise<{ slug: string }> };
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
   const { slug } = await props.params;
   const c = caseStudyBySlug(slug);
   if (!c) return {};
   return {
     title: c.title,
     description: c.summary,
+    alternates: { canonical: `/case-studies/${slug}` },
   };
 }
 
-export default async function Page(props: PageProps<"/case-studies/[slug]">) {
+export default async function Page(props: Props) {
   const { slug } = await props.params;
   const c = caseStudyBySlug(slug);
   if (!c) notFound();

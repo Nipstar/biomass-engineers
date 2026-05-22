@@ -47,7 +47,7 @@ export default function Page() {
                 href={`/case-studies/${c.slug}`}
                 className="bg-[var(--white)] border-2 border-[var(--green)] flex flex-col hover:-translate-y-0.5 transition-transform"
               >
-                <ImagePlaceholder label={c.title} aspect="4/3" tone="green" />
+                <ImagePlaceholder src={c.image} label={c.title} aspect="4/3" tone="green" />
                 <div className="p-6 flex-1 flex flex-col">
                   <span className="self-start text-xs px-2 py-1 bg-[var(--amber)] text-[var(--charcoal)] font-semibold mb-3">
                     {c.sector}

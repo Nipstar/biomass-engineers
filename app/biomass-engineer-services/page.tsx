@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: service.h1,
   description:
     "Standalone biomass engineer visits — pre-purchase inspections, fuel quality testing, RHI audits, control diagnosis and site training.",
+  alternates: { canonical: "/biomass-engineer-services" },
 };
 
 export default function Page() {

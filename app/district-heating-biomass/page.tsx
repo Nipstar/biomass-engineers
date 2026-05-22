@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: service.h1,
   description:
     "Biomass district heating design, install, commissioning and maintenance. Pre-insulated pipework, coded welding, BMS integration and long-term support.",
+  alternates: { canonical: "/district-heating-biomass" },
 };
 
 export default function Page() {

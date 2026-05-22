@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { CTAStrip } from "@/components/CTAStrip";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
@@ -5,12 +7,19 @@ import { Marquee } from "@/components/Marquee";
 import { site } from "@/lib/site";
 import { brands } from "@/lib/brands";
 import { caseStudies } from "@/lib/caseStudies";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts, blogImageForPost } from "@/lib/blog";
+
+export const metadata: Metadata = {
+  title: { absolute: `${site.name} | ${site.tagline}` },
+  description:
+    "Specialist biomass boiler installation, servicing, repair and maintenance across the South West — Bristol to Bournemouth to Penzance. HETAS registered. RHI compliant. Every major brand.",
+  alternates: { canonical: "/" },
+};
 
 const stats = [
   { n: "500+", label: "Systems Serviced" },
   { n: "15+", label: "Years Experience" },
-  { n: "All UK", label: "Coverage" },
+  { n: "South West", label: "Coverage" },
   { n: "100%", label: "RHI Compliant" },
 ];
 
@@ -53,13 +62,13 @@ export default function HomePage() {
         <div className="container-bx px-4 pt-20 pb-0 grid lg:grid-cols-[1fr_0.85fr] gap-0 items-stretch">
           <div className="pb-16 lg:pr-16">
             <span className="eyebrow-mono text-xs text-[var(--amber)] tracking-widest uppercase mb-6 block">
-              ◆ HETAS Registered · South West Specialists · UK-Wide Coverage
+              ◆ HETAS Registered · South West Specialists · Bristol – Bournemouth – Penzance
             </span>
             <h1 className="font-display text-5xl md:text-7xl leading-[1.0] mb-8">
               Specialist Biomass Boiler Engineers
             </h1>
             <p className="text-lg text-[var(--cream-dark)] max-w-xl mb-10 leading-relaxed">
-              Installation, servicing and repair for every major brand — from Devon to the whole of the UK. HETAS registered. RHI compliant.
+              Installation, servicing and repair for every major brand — across the Bristol – Bournemouth – Penzance triangle. HETAS registered. RHI compliant.
             </p>
             <div className="flex flex-wrap gap-4 mb-14">
               <Link href="/contact" className="btn btn-amber">Get a Quote</Link>
@@ -79,18 +88,24 @@ export default function HomePage() {
 
           {/* Right — diagonal visual */}
           <div className="hidden lg:block relative self-stretch">
-            <ImagePlaceholder 
-              src="/images/hero-plant-room.jpg"
-              label="Biomass plant room · Devon"
+            <ImagePlaceholder
+              src="/images/work/froling-tx-install.webp"
+              label="Fröling TX install · Devon"
               aspect="3/4"
               tone="charcoal"
               priority
               sizes="(max-width: 1024px) 0px, 40vw"
-              className="h-full" 
+              className="h-full"
             />
-            <div className="absolute top-8 left-[-20px] bg-[var(--amber)] text-[var(--charcoal)] border-2 border-[var(--charcoal)] shadow-[4px_4px_0_0_var(--charcoal)] px-4 py-2 font-semibold text-sm">
-              ★ 5.0 Google Reviews
-            </div>
+            <a
+              href={site.hetasUrl}
+              target="_blank"
+              rel="noopener"
+              aria-label="HETAS Registered — view profile"
+              className="absolute bottom-8 right-[-20px] bg-[var(--cream)] border-2 border-[var(--charcoal)] shadow-[4px_4px_0_0_var(--charcoal)] px-3 py-2 hover:bg-[var(--amber)] transition-colors"
+            >
+              <Image src="/hetas-logo.svg" alt="HETAS Registered" width={117} height={72} className="h-10 w-auto" />
+            </a>
           </div>
         </div>
       </section>
@@ -221,13 +236,13 @@ export default function HomePage() {
             </div>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            {caseStudies.slice(0, 3).map((c, i) => (
+            {caseStudies.slice(0, 3).map((c) => (
               <article key={c.slug} className="bg-[var(--white)] border-2 border-[var(--charcoal)] flex flex-col hover:shadow-[6px_6px_0_0_var(--amber)] transition-shadow">
-                <ImagePlaceholder 
-                  src={i === 0 ? "/images/engineer-at-work.jpg" : i === 1 ? "/images/service-van.jpg" : undefined}
-                  label={c.title} 
-                  aspect="4/3" 
-                  tone="green" 
+                <ImagePlaceholder
+                  src={c.image}
+                  label={c.title}
+                  aspect="4/3"
+                  tone="green"
                 />
                 <div className="p-6 flex-1 flex flex-col">
                   <span className="self-start eyebrow-mono text-[10px] px-2 py-1 bg-[var(--amber)] text-[var(--charcoal)] font-semibold mb-3 uppercase tracking-widest">
@@ -297,7 +312,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-6">
             {posts.map((p) => (
                 <article key={p.slug} className="bg-[var(--white)] border-2 border-[var(--charcoal)] flex flex-col hover:shadow-[6px_6px_0_0_var(--amber)] transition-shadow">
-                  <ImagePlaceholder aspect="16/9" tone="green" />
+                  <ImagePlaceholder src={blogImageForPost(p.slug)} label={p.title} aspect="16/9" tone="green" />
                   <div className="p-6 flex-1 flex flex-col">
                   <span className="self-start eyebrow-mono text-[10px] px-2 py-1 bg-[var(--green)] text-[var(--cream)] font-semibold mb-3 uppercase tracking-widest">
                     {p.category}

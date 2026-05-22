@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/Hero";
 import { CallbackForm } from "@/components/CallbackForm";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact Biomass Engineers Limited",
+  title: "Contact Us",
   description:
-    "Call, email or request a callback. Biomass Engineers Limited is based in Exmouth, Devon and covers the South West and the whole of the UK.",
+    "Call, email or request a callback. Biomass Engineers Limited is based in Exmouth, Devon and covers the South West — the Bristol – Bournemouth – Penzance triangle.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function Page() {
@@ -43,18 +43,18 @@ export default function Page() {
                 {site.address.postalCode}
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <ImagePlaceholder src="/images/devon-map.png" label="Map — Exmouth, Devon" aspect="1/1" tone="cream" />
-                <div className="text-[10px] text-[var(--muted)]">
-                  Map: Exmouth, Devon base
-                </div>
+            <div className="space-y-4">
+              <div className="aspect-[16/10] border-2 border-[var(--green)] overflow-hidden">
+                <iframe
+                  src="https://maps.google.com/maps?q=Bassetts+Gardens,Exmouth+EX8+4EE&z=8&output=embed"
+                  title="Map — Biomass Engineers, Exmouth"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full"
+                />
               </div>
-              <div className="space-y-4">
-                <ImagePlaceholder src="/images/service-van.jpg" label="Service Van" aspect="1/1" tone="green" />
-                <div className="text-[10px] text-[var(--muted)]">
-                  Coverage: UK-wide technical support
-                </div>
+              <div className="text-xs text-[var(--muted)]">
+                Base: Exmouth, Devon. Coverage: South West — Bristol – Bournemouth – Penzance triangle (Devon, Cornwall, Somerset, Dorset, Wiltshire, Bristol and western Hampshire).
               </div>
             </div>
           </div>

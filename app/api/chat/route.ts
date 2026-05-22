@@ -1,23 +1,22 @@
 import { NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
 
-const client = new Anthropic();
+const CHAT_WEBHOOK_URL =
+  process.env.CHAT_WEBHOOK_URL ??
+  "https://auto.juxtarank.com/webhook/biomass-chat";
 
-const SYSTEM = `You are a helpful assistant for Biomass Engineers Limited, a specialist biomass boiler installation and servicing company based in Exmouth, Devon. You cover the South West of England and the wider UK.
+type ChatMessage = { role: "user" | "assistant"; content: string };
 
-You help website visitors with questions about:
-- Biomass boiler servicing and maintenance
-- Biomass boiler installation
-- Fuel types (wood pellet, wood chip, log)
-- Fault diagnosis and repair
-- RHI (Renewable Heat Incentive) compliance
-- Commercial and agricultural biomass systems
-- District heating systems
-- Biomass boiler brands: Fröling, Hargassner, Herz, Heizomat, Binder, Windhager
-
-Keep answers concise and practical. If a visitor needs a quote, site visit, or urgent assistance, direct them to call 01395 123456 or submit the contact form. You do not have access to booking systems or live engineer availability.
-
-Do not discuss competitors by name. Do not make guarantees about pricing or timescales without qualification. If you are unsure about something, say so and recommend calling the office.`;
+function isMessage(m: unknown): m is ChatMessage {
+  return (
+    !!m &&
+    typeof m === "object" &&
+    "role" in m &&
+    "content" in m &&
+    ((m as { role: unknown }).role === "user" ||
+      (m as { role: unknown }).role === "assistant") &&
+    typeof (m as { content: unknown }).content === "string"
+  );
+}
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
@@ -25,49 +24,67 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 
-  const messages: Anthropic.MessageParam[] = body.messages
-    .filter(
-      (m: unknown) =>
-        m &&
-        typeof m === "object" &&
-        "role" in m &&
-        "content" in m &&
-        (m.role === "user" || m.role === "assistant") &&
-        typeof (m as { content: unknown }).content === "string"
-    )
-    .slice(-20);
-
+  const messages: ChatMessage[] = body.messages.filter(isMessage).slice(-20);
   if (!messages.length) {
     return NextResponse.json({ error: "No messages" }, { status: 400 });
   }
 
-  const stream = await client.messages.stream({
-    model: "claude-haiku-4-5-20251001",
-    max_tokens: 500,
-    system: SYSTEM,
+  const lastUserMessage =
+    [...messages].reverse().find((m) => m.role === "user")?.content ?? "";
+
+  const payload = {
+    message: lastUserMessage,
     messages,
-  });
+    sessionId: request.headers.get("x-session-id") ?? null,
+    source: "biomass-engineers.co.uk",
+    userAgent: request.headers.get("user-agent") ?? null,
+    submittedAt: new Date().toISOString(),
+  };
 
-  const encoder = new TextEncoder();
+  let upstream: Response;
+  try {
+    upstream = await fetch(CHAT_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+  } catch (err) {
+    console.error("Chat webhook fetch failed:", err);
+    return NextResponse.json({ error: "Chat unavailable" }, { status: 502 });
+  }
 
-  const readable = new ReadableStream({
-    async start(controller) {
-      for await (const event of stream) {
-        if (
-          event.type === "content_block_delta" &&
-          event.delta.type === "text_delta"
-        ) {
-          controller.enqueue(encoder.encode(event.delta.text));
-        }
+  if (!upstream.ok) {
+    console.error("Chat webhook returned non-OK:", upstream.status);
+    return NextResponse.json({ error: "Chat unavailable" }, { status: 502 });
+  }
+
+  const contentType = upstream.headers.get("content-type") ?? "";
+  let reply = "";
+
+  const extractText = (d: unknown): string => {
+    if (Array.isArray(d)) {
+      return d.map((item) => extractText(item)).filter(Boolean).join("\n\n");
+    }
+    if (d && typeof d === "object") {
+      const obj = d as Record<string, unknown>;
+      for (const key of ["output", "response", "message", "text", "reply", "content"]) {
+        if (typeof obj[key] === "string" && obj[key]) return obj[key] as string;
       }
-      controller.close();
-    },
-  });
+      return JSON.stringify(d);
+    }
+    return d == null ? "" : String(d);
+  };
 
-  return new Response(readable, {
+  if (contentType.includes("application/json")) {
+    const data = await upstream.json().catch(() => null);
+    reply = extractText(data);
+  } else {
+    reply = await upstream.text();
+  }
+
+  return new Response(reply, {
     headers: {
       "Content-Type": "text/plain; charset=utf-8",
-      "Transfer-Encoding": "chunked",
       "Cache-Control": "no-cache",
     },
   });

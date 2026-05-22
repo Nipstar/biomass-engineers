@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Renewable Heat Incentive (RHI) — Biomass Boiler Compliance",
   description:
     "Keep your RHI payments on track with annual RHI-compliant servicing, metering support and compliance remediation from Biomass Engineers Limited.",
+  alternates: { canonical: "/renewable-heat-incentive-rhi" },
 };
 
 const categories: FAQCategory[] = [

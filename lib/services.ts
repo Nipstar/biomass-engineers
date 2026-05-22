@@ -43,7 +43,7 @@ export const servicePages: ServicePage[] = [
     navLabel: "Servicing & Maintenance",
     h1: "Biomass Boiler Servicing & Maintenance",
     intro:
-      "An annual service keeps your biomass system safe, efficient and — critically — RHI compliant. Our engineers service every major brand, work to manufacturer schedules, and issue written service records suitable for OFGEM compliance checks. Domestic, agricultural and commercial visits across Devon, the South West and UK-wide.",
+      "An annual service keeps your biomass system safe, efficient and — critically — RHI compliant. Our engineers service every major brand, work to manufacturer schedules, and issue written service records suitable for OFGEM compliance checks. Domestic, agricultural and commercial visits across the South West — the Bristol – Bournemouth – Penzance triangle.",
     checklist: [
       "Combustion chamber and grate clean",
       "Flue and heat exchanger inspection and clean",

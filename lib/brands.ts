@@ -31,7 +31,7 @@ export const brands: Brand[] = [
     kwRange: "15 kW to 1,500 kW",
     description:
       "Fröling is one of the most widely installed premium biomass brands in the UK. Their T4e and PE1 series are common on RHI-registered domestic and light-commercial sites. Controls are proprietary and require specialist knowledge for correct combustion tuning and RHI-compliant servicing.",
-    image: "/images/froling-boiler.png",
+    image: "/images/canva/square/frolig-boiler.webp",
   },
   {
     slug: "hargassner-biomass-boilers",
@@ -52,7 +52,7 @@ export const brands: Brand[] = [
     kwRange: "6 kW to 2,500 kW",
     description:
       "Hargassner dominates mid- and large-scale agricultural, equestrian, and estate installations across the UK. We service their wood chip and pellet ranges including the NANO-PK for domestic, the ECO-PK for light-commercial, and the MEGA-PK for large commercial and district heating applications.",
-    image: "/images/hero-plant-room.png",
+    image: "/images/canva/landscape/350kw-district-heating-system-with-gas-back-up-boiler.webp",
   },
   {
     slug: "herz-biomass-boilers",
@@ -72,8 +72,8 @@ export const brands: Brand[] = [
     ],
     kwRange: "4 kW to 20,000 kW",
     description:
-      "Herz manufactures a broad family of biomass boilers, from the 4 kW pelletstar for domestic retrofits up to multi-megawatt industrial firematic systems. We service BioFire chip, firematic chip and pellet, and pelletstar domestic units across the South West and UK-wide.",
-    image: "/images/herz-boiler.png",
+      "Herz manufactures a broad family of biomass boilers, from the 4 kW pelletstar for domestic retrofits up to multi-megawatt industrial firematic systems. We service BioFire chip, firematic chip and pellet, and pelletstar domestic units across the South West — Bristol to Bournemouth to Penzance.",
+    image: "/images/canva/landscape/biomass-boiler-controls.webp",
   },
   {
     slug: "heizomat-biomass-boilers",
@@ -94,7 +94,7 @@ export const brands: Brand[] = [
     kwRange: "50 kW to 990 kW",
     description:
       "Heizomat systems are a common sight on large agricultural estates, sawmills, and timber-drying operations where on-site chip is available. We service the RHK-AK range and hold parts contacts for stoker hydraulics and proprietary PLC hardware.",
-    image: "/images/commercial-installation.png",
+    image: "/images/canva/landscape/waste-wood-shredder-with-overband-magnets.webp",
   },
   {
     slug: "binder-biomass-boilers",
@@ -115,7 +115,7 @@ export const brands: Brand[] = [
     kwRange: "150 kW to 10,000 kW",
     description:
       "Binder boilers are installed on the largest UK biomass sites — sawmills, district heating plants, and industrial process heat. Our coded welding team can support plant room and pressurised circuit work alongside routine servicing and travelling grate maintenance.",
-    image: "/images/commercial-installation.png",
+    image: "/images/canva/square/binda-boiler-relocated.webp",
   },
   {
     slug: "windhager-biomass-boilers",
@@ -136,7 +136,7 @@ export const brands: Brand[] = [
     kwRange: "2.6 kW to 60 kW",
     description:
       "Windhager BioWIN pellet boilers are a popular choice for premium domestic retrofits and small commercial sites. The PuroWIN wood chip boiler extends the range into light commercial. RHI-registered BioWIN installations across Devon and the South West form a significant share of our ongoing service book.",
-    image: "/images/maintenance-engineer.png",
+    image: "/images/canva/landscape/fuel-delivery-and-storage.webp",
   },
 ];
 

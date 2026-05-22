@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Affiliate Companies & Partners",
   description:
     "Trusted partners and affiliate companies we work with across fuel supply, specialist installation and commercial biomass services.",
+  alternates: { canonical: "/affiliate-companies" },
 };
 
 const partners = [

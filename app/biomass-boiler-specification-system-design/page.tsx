@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: service.h1,
   description:
     "Biomass boiler specification and system design for architects, M&E consultants and developers. Heat calcs, fuel store design, tender-ready documentation.",
+  alternates: { canonical: "/biomass-boiler-specification-system-design" },
 };
 
 export default function Page() {

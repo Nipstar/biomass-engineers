@@ -22,9 +22,23 @@ export function ServicePageTemplate({
     "@context": "https://schema.org",
     "@type": "Service",
     name: service.h1,
-    provider: { "@type": "LocalBusiness", name: site.name, url: site.url },
+    provider: { "@type": "LocalBusiness", name: site.name, url: site.url, telephone: site.phoneE164 },
     description: service.intro,
-    areaServed: { "@type": "Country", name: "United Kingdom" },
+    areaServed: {
+      "@type": "GeoShape",
+      name: "South West England — Bristol to Bournemouth to Penzance",
+      polygon: "51.4545 -2.5879 50.7192 -1.8808 50.1186 -5.5373 51.4545 -2.5879",
+    },
+    serviceType: service.navLabel,
+    url: `${site.url}/${service.slug}`,
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+      { "@type": "ListItem", position: 2, name: service.navLabel, item: `${site.url}/${service.slug}` },
+    ],
   };
   const faqSchema = {
     "@context": "https://schema.org",
@@ -38,6 +52,7 @@ export function ServicePageTemplate({
   return (
     <>
       <JsonLd data={serviceSchema} />
+      <JsonLd data={breadcrumbSchema} />
       <JsonLd data={faqSchema} />
       <Hero
         eyebrow="Biomass Services"
@@ -114,7 +129,7 @@ export function ServicePageTemplate({
               Coverage
             </div>
             <h2 className="font-display text-3xl md:text-4xl">
-              {service.navLabel} across the South West and UK-wide
+              {service.navLabel} across the South West — Bristol to Bournemouth to Penzance
             </h2>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">

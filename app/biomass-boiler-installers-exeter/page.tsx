@@ -8,6 +8,7 @@ const loc = locationBySlug("biomass-boiler-installers-exeter")!;
 export const metadata: Metadata = {
   title: `Biomass Boiler Services in ${loc.city} | ${loc.region}`,
   description: loc.intro,
+  alternates: { canonical: "/biomass-boiler-installers-exeter" },
 };
 
 export default function Page() {

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/site";
 
@@ -33,7 +34,7 @@ export function Footer() {
           </div>
           <div className="text-sm text-[var(--cream-dark)] mb-4">Limited</div>
           <p className="text-sm text-[var(--cream-dark)] mb-4">
-            Specialist biomass boiler installation, servicing and repairs. HETAS registered, RHI compliant. South West specialist with UK-wide coverage.
+            Specialist biomass boiler installation, servicing and repairs. HETAS registered, RHI compliant. South West coverage across the Bristol – Bournemouth – Penzance triangle.
           </p>
           <div className="space-y-1 text-sm">
             <a href={site.phoneEnquiriesHref} className="block hover:text-[var(--amber)]">
@@ -56,8 +57,23 @@ export function Footer() {
           <div className="font-display text-base font-bold text-[var(--amber)] mb-4 tracking-wide">
             ACCREDITATIONS
           </div>
+          <a
+            href={site.hetasUrl}
+            target="_blank"
+            rel="noopener"
+            aria-label="HETAS profile — Biomass Engineers Ltd"
+            className="inline-block bg-[var(--cream)] border-2 border-[var(--amber)] p-3 mb-4 hover:bg-[var(--amber)] transition-colors"
+          >
+            <Image
+              src="/hetas-logo.svg"
+              alt="HETAS Registered"
+              width={117}
+              height={72}
+              className="h-12 w-auto"
+            />
+          </a>
           <div className="flex flex-wrap gap-2">
-            {accreditations.map((a) => (
+            {accreditations.filter((a) => a !== "HETAS Registered").map((a) => (
               <span
                 key={a}
                 className="inline-block text-xs px-3 py-2 border-2 border-[var(--amber)] text-[var(--amber)] font-semibold"

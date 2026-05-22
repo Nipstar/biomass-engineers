@@ -16,6 +16,7 @@ const kindTitles = {
 export const metadata: Metadata = {
   title: "Sitemap",
   description: "Full sitemap for Biomass Engineers Limited — all pages, services, locations and resources.",
+  alternates: { canonical: "/sitemap" },
 };
 
 const mainPages = [

@@ -2,13 +2,48 @@ import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { CTAStrip } from "@/components/CTAStrip";
+import { JsonLd } from "@/components/JsonLd";
 import type { CaseStudy } from "@/lib/caseStudies";
 import { caseStudies } from "@/lib/caseStudies";
+import { site } from "@/lib/site";
 
 export function CaseStudyPageTemplate({ study }: { study: CaseStudy }) {
   const related = caseStudies.filter((c) => c.slug !== study.slug).slice(0, 3);
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+      { "@type": "ListItem", position: 2, name: "Case Studies", item: `${site.url}/case-studies` },
+      { "@type": "ListItem", position: 3, name: study.title, item: `${site.url}/case-studies/${study.slug}` },
+    ],
+  };
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: study.title,
+    description: study.summary,
+    image: study.image ? `${site.url}${study.image}` : undefined,
+    datePublished: `${study.year}-01-01`,
+    author: { "@type": "Organization", name: site.name },
+    publisher: {
+      "@type": "Organization",
+      name: site.name,
+      url: site.url,
+    },
+    about: {
+      "@type": "Thing",
+      name: `${study.boilerBrand} ${study.output} ${study.fuelType} biomass boiler`,
+    },
+    locationCreated: { "@type": "Place", name: study.location },
+  };
+
   return (
     <>
+      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={articleSchema} />
       <Hero eyebrow={`${study.sector} · ${study.location}`} title={study.title} subtitle={study.summary} />
 
       <section className="bg-[var(--cream)]">
@@ -51,10 +86,10 @@ export function CaseStudyPageTemplate({ study }: { study: CaseStudy }) {
             <article>
               <h2 className="font-display text-2xl md:text-4xl mb-6">On site</h2>
               <div className="grid grid-cols-2 gap-3">
-                <ImagePlaceholder label="Plant room" aspect="4/3" tone="green" />
-                <ImagePlaceholder label="Biomass pellets" aspect="4/3" tone="green" />
-                <ImagePlaceholder label="Industrial pipework" aspect="4/3" tone="cream" />
-                <ImagePlaceholder label="Domestic fuel hopper" aspect="4/3" tone="charcoal" />
+                <ImagePlaceholder src={study.image} label={study.title} aspect="4/3" tone="green" />
+                <ImagePlaceholder src="/images/canva/landscape/biomass-boiler-controls.webp" label="Boiler controls" aspect="4/3" tone="green" />
+                <ImagePlaceholder src="/images/canva/landscape/9.webp" label="Pump manifold pipework" aspect="4/3" tone="cream" />
+                <ImagePlaceholder src="/images/canva/landscape/bespoke-concentration-unit.webp" label="Bespoke concentration unit" aspect="4/3" tone="charcoal" />
               </div>
             </article>
 

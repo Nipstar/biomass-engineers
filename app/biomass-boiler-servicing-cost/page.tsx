@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: service.h1,
   description:
     "Biomass boiler servicing costs — domestic, commercial, standalone visits and emergency call-outs. Transparent UK pricing from £300 + VAT.",
+  alternates: { canonical: "/biomass-boiler-servicing-cost" },
 };
 
 export default function Page() {

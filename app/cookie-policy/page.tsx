@@ -5,6 +5,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Cookie Policy",
   description: "Cookie policy for Biomass Engineers Limited — what cookies we use and how to control them.",
+  alternates: { canonical: "/cookie-policy" },
 };
 
 const cookies = [

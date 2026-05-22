@@ -6,12 +6,13 @@ import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 export const metadata: Metadata = {
   title: "Meet the Team",
   description:
-    "Meet the Biomass Engineers Limited team — HETAS-registered specialist engineers covering Devon, the South West and UK-wide biomass servicing, installation and repair.",
+    "Meet the Biomass Engineers Limited team — HETAS-registered specialist engineers covering Devon, Cornwall, Somerset, Dorset, Wiltshire and Bristol across the Bristol – Bournemouth – Penzance triangle.",
+  alternates: { canonical: "/about/our-team" },
 };
 
-const team = [
-  { name: "Jim King", role: "Director & Lead Engineer", specialism: "System design, commercial installation, district heating", years: "20+ years in biomass", image: "/images/engineer-at-work.jpg" },
-  { name: "Gary Thorne", role: "Senior Service Engineer", specialism: "Fröling, Hargassner, Herz diagnostics & maintenance", years: "15+ years in engineering", image: undefined },
+const team: { name: string; role: string; specialism: string; years: string; image?: string }[] = [
+  { name: "Jim King", role: "Director & Lead Engineer", specialism: "System design, commercial installation, district heating", years: "20+ years in biomass", image: "/images/canva/square/jim-king.webp" },
+  { name: "Gary Thorne", role: "Director & Senior Service Engineer", specialism: "Fröling, Hargassner, Herz diagnostics & maintenance", years: "15+ years in engineering", image: "/images/canva/square/gary-thorne.webp" },
 ];
 
 export default function Page() {

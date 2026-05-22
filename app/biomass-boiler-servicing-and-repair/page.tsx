@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: service.h1,
   description:
     "Biomass boiler repair and fault diagnosis — every major brand. Emergency call-outs, priority response and no contract required.",
+  alternates: { canonical: "/biomass-boiler-servicing-and-repair" },
 };
 
 export default function Page() {

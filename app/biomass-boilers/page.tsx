@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Biomass Boiler Brands We Install, Service & Repair",
   description:
     "We install, service and repair every major biomass boiler brand — Fröling, Hargassner, Herz, Heizomat, Binder and Windhager. Specialist knowledge across all manufacturers.",
+  alternates: { canonical: "/biomass-boilers" },
 };
 
 export default function Page() {

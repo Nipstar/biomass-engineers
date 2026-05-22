@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: service.h1,
   description:
     "Biomass boiler parts and spares for every major brand — Fröling, Hargassner, Herz, Heizomat, Binder, Windhager. Supply-only or supply-and-fit.",
+  alternates: { canonical: "/biomass-boiler-parts-and-spares" },
 };
 
 export default function Page() {

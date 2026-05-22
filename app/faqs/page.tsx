@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Biomass Boiler FAQs",
   description:
     "Answers to the most common questions about biomass boilers — servicing, installation, RHI, repairs and commercial systems.",
+  alternates: { canonical: "/faqs" },
 };
 
 const categories: FAQCategory[] = [
