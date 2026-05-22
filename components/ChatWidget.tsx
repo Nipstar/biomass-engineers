@@ -74,20 +74,20 @@ export function ChatWidget() {
         type="button"
         onClick={() => setOpen(!open)}
         aria-label={open ? "Close chat" : "Ask an engineer"}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[var(--green)] text-[var(--cream)] px-5 py-3 border-2 border-[var(--charcoal)] shadow-[4px_4px_0_0_var(--charcoal)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_0_var(--charcoal)] transition-all font-semibold text-sm"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-4 bg-[var(--amber)] text-[var(--charcoal)] px-7 py-4 border-2 border-[var(--charcoal)] shadow-[5px_5px_0_0_var(--charcoal)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[7px_7px_0_0_var(--charcoal)] transition-all font-bold text-base"
       >
         {open ? (
           <>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
               <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="2" />
             </svg>
             Close
           </>
         ) : (
           <>
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--amber)] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[var(--amber)]" />
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--green)] opacity-75" />
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-[var(--green)]" />
             </span>
             Ask an engineer
           </>
