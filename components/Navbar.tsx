@@ -8,12 +8,28 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (open) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [open]);
+
+  const closeMobile = () => {
+    setOpen(false);
+    setMobileExpanded({});
+  };
 
   return (
     <header
@@ -85,34 +101,67 @@ export function Navbar() {
       </div>
 
       {open && (
-        <nav className="lg:hidden border-t-2 border-[var(--green)] bg-[var(--cream)]" aria-label="Mobile">
-          <ul className="flex flex-col">
-            {nav.map((item) => (
-              <li key={item.label} className="border-b border-[var(--cream-dark)]">
-                <Link
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="block px-4 py-3 font-semibold text-[var(--charcoal)]"
-                >
-                  {item.label}
-                </Link>
-                {"children" in item && item.children && (
-                  <ul className="pl-4 pb-2">
-                    {item.children.map((c) => (
-                      <li key={c.href}>
-                        <Link
-                          href={c.href}
-                          onClick={() => setOpen(false)}
-                          className="block px-4 py-2 text-sm text-[var(--mid)]"
+        <nav
+          className="lg:hidden fixed left-0 right-0 top-20 bottom-0 border-t-2 border-[var(--green)] bg-[var(--cream)] overflow-y-auto overscroll-contain"
+          aria-label="Mobile"
+        >
+          <ul className="flex flex-col pb-6">
+            {nav.map((item) => {
+              const hasChildren = "children" in item && item.children;
+              const expanded = mobileExpanded[item.label];
+              return (
+                <li key={item.label} className="border-b border-[var(--cream-dark)]">
+                  <div className="flex items-stretch">
+                    <Link
+                      href={item.href}
+                      onClick={closeMobile}
+                      className="flex-1 block px-4 py-3 font-semibold text-[var(--charcoal)]"
+                    >
+                      {item.label}
+                    </Link>
+                    {hasChildren && (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setMobileExpanded((prev) => ({
+                            ...prev,
+                            [item.label]: !prev[item.label],
+                          }))
+                        }
+                        aria-label={`${expanded ? "Collapse" : "Expand"} ${item.label} menu`}
+                        aria-expanded={!!expanded}
+                        className="px-4 border-l border-[var(--cream-dark)] text-[var(--green)] flex items-center justify-center w-14"
+                      >
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          className={`transition-transform ${expanded ? "rotate-180" : ""}`}
                         >
-                          {c.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
+                          <path d="M5 7l5 6 5-6" stroke="currentColor" strokeWidth="2" fill="none" />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
+                  {hasChildren && expanded && (
+                    <ul className="pl-4 pb-2 bg-[var(--cream-dark)]/30">
+                      {item.children!.map((c) => (
+                        <li key={c.href}>
+                          <Link
+                            href={c.href}
+                            onClick={closeMobile}
+                            className="block px-4 py-2 text-sm text-[var(--mid)]"
+                          >
+                            {c.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </nav>
       )}
