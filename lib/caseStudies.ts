@@ -51,7 +51,7 @@ export const caseStudies: CaseStudy[] = [
       name: "General Manager",
       role: "Country Hotel, Mid Devon",
     },
-    image: "/images/canva/landscape/350kw-district-heating-system-with-gas-back-up-boiler.webp",
+    image: "/images/canva/landscape/froling-boiler-country-hotel.webp",
   },
   {
     slug: "agricultural-estate-pellet-bulk-store",
